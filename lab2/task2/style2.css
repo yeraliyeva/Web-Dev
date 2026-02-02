@@ -1,0 +1,180 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.main-wrapper {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.content-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 80px;
+    max-width: 1000px;
+    width: 100%;
+}
+
+/* Левая часть: все прижато влево */
+.hero-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; 
+    flex: 1;
+}
+
+.top-icon {
+    width: 52px;
+    height: 52px;
+    margin-bottom: 25px;
+    border-radius: 12px;
+}
+
+.main-title {
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 1.2;
+    color: #262626;
+    margin-bottom: 35px;
+    text-align: left;
+    max-width: 450px;
+}
+
+.gradient-text {
+    background: linear-gradient(to right, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.promo-img {
+    width: 100%;
+    max-width: 460px;
+    border-radius: 4px;
+}
+
+/* Правая часть: карточки */
+.auth-box {
+    width: 350px;
+    margin-top: 120px;
+}
+
+.card {
+    background: #fff;
+    border: 1px solid #dbdbdb;
+    padding: 20px 40px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.form-header {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 15px 0 25px;
+}
+
+
+.input-group {
+    position: relative;
+    margin-bottom: 8px;
+}
+
+.input-field {
+    width: 100%;
+    height: 40px;
+    background: #fafafa;
+    border: 1px solid #dbdbdb;
+    border-radius: 3px;
+    padding: 14px 8px 2px;
+    font-size: 12px;
+    outline: none;
+}
+
+.input-group label {
+    position: absolute;
+    left: 8px;
+    top: 10px;
+    color: #8e8e8e;
+    font-size: 12px;
+    transition: all 0.1s ease-out;
+    pointer-events: none;
+}
+
+/* Когда поле в фокусе или заполнено, лейбл уходит вверх */
+.input-field:focus + label,
+.input-field:not(:placeholder-shown) + label {
+    font-size: 10px;
+    top: 2px;
+}
+
+.login-btn {
+    width: 100%;
+    background-color: #0095f6;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 7px 0;
+    font-weight: 600;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.line { flex: 1; height: 1px; background: #dbdbdb; }
+.or { color: #8e8e8e; font-size: 13px; font-weight: 600; margin: 0 18px; }
+
+.fb-login {
+    background: none;
+    border: none;
+    color: #385185;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    margin: 10px 0 15px;
+}
+
+.fb-icon-box {
+    background: #385185;
+    color: white;
+    padding: 0 5px;
+    border-radius: 2px;
+    margin-right: 8px;
+}
+
+.forgot-pwd { font-size: 12px; color: #00376b; text-decoration: none; display: block; }
+.signup-card a { color: #0095f6; text-decoration: none; font-weight: 600; }
+.meta-footer-logo { text-align: center; margin-top: 25px; }
+.meta-footer-logo img { width: 60px; opacity: 0.5; }
+
+/* Футер */
+.bottom-footer {
+    padding: 24px;
+    text-align: center;
+    color: #8e8e8e;
+    font-size: 12px;
+}
+
+.footer-nav { margin-bottom: 12px; display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
+.footer-nav a { color: #8e8e8e; text-decoration: none; }
+
+@media (max-width: 850px) {
+    .content-container { flex-direction: column; align-items: center; }
+    .hero-section { align-items: center; text-align: center; }
+}
