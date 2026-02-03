@@ -28,7 +28,7 @@ body {
     width: 100%;
 }
 
-/* Левая часть: все прижато влево */
+
 .hero-section {
     display: flex;
     flex-direction: column;
@@ -65,7 +65,7 @@ body {
     border-radius: 4px;
 }
 
-/* Правая часть: карточки */
+
 .auth-box {
     width: 350px;
     margin-top: 120px;
@@ -112,7 +112,7 @@ body {
     pointer-events: none;
 }
 
-/* Когда поле в фокусе или заполнено, лейбл уходит вверх */
+
 .input-field:focus + label,
 .input-field:not(:placeholder-shown) + label {
     font-size: 10px;
@@ -163,7 +163,7 @@ body {
 .meta-footer-logo { text-align: center; margin-top: 25px; }
 .meta-footer-logo img { width: 60px; opacity: 0.5; }
 
-/* Футер */
+
 .bottom-footer {
     padding: 24px;
     text-align: center;
