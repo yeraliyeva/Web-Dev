@@ -17,6 +17,10 @@ body {
     min-height: 100vh;
 }
 
+.create-page-text-link:hover {
+    text-decoration: underline;
+}
+
 .main-content {
     flex: 1;
     display: flex;
