@@ -11,5 +11,14 @@ import { products } from '../../data/products';
   styleUrl: './product-list.component.css',
 })
 export class ProductListComponent {
-  products = products;
+  products = [...products];
+
+  onSort(event: any) {
+    const value = event.target.value;
+    if (value === 'asc') {
+      this.products.sort((a: any, b: any) => a.price - b.price);
+    } else if (value === 'desc') {
+      this.products.sort((a: any, b: any) => b.price - a.price);
+    }
+  }
 }

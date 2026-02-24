@@ -1,6 +1,11 @@
-<div class="product-grid">
-  <app-product-card
-    *ngFor="let product of products"
-    [product]="product"
-  ></app-product-card>
+<div class="sort-container" style="margin-bottom: 20px;">
+  <select (change)="onSort($event)" style="padding: 5px;">
+    <option value="" selected disabled>Сортировать по цене</option>
+    <option value="asc">По возрастанию</option>
+    <option value="desc">По убыванию</option>
+  </select>
+</div>
+
+<div class="product-list">
+  <app-product-card *ngFor="let product of products" [product]="product"></app-product-card>
 </div>

@@ -2,6 +2,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const taskInput = document.getElementById("new-task");
   const addBtn = document.getElementById("add-btn");
   const todoList = document.getElementById("todo-list");
+  const doneCountSpan = document.getElementById("done-count");
+  const todoCountSpan = document.getElementById("todo-count");
 
   const initialTasks = [
     { text: "First item", done: true },
@@ -30,6 +32,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  function updateStats() {
+    const totalTasks = document.querySelectorAll(".todo-item").length;
+    const completedTasks = document.querySelectorAll(".todo-item.done").length;
+    const pendingTasks = totalTasks - completedTasks;
+
+    if (doneCountSpan) doneCountSpan.textContent = completedTasks;
+    if (todoCountSpan) todoCountSpan.textContent = pendingTasks;
+  }
+
   function addTask(text, isDone = false) {
     const li = document.createElement("li");
     li.className = "todo-item";
@@ -44,6 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     checkbox.addEventListener("change", () => {
       li.classList.toggle("done");
+      updateStats();
     });
 
     const span = document.createElement("span");
@@ -56,6 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     deleteBtn.addEventListener("click", () => {
       todoList.removeChild(li);
+      updateStats();
     });
 
     li.appendChild(checkbox);
@@ -63,5 +76,6 @@ document.addEventListener("DOMContentLoaded", () => {
     li.appendChild(deleteBtn);
 
     todoList.appendChild(li);
+    updateStats();
   }
 });
