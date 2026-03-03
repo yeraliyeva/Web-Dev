@@ -52,6 +52,8 @@ export class ProductItemComponent {
     }
 
     remove(): void {
-        this.delete.emit(this.product().id);
+        if (this.product().likes < 10) {
+            this.delete.emit(this.product().id);
+        }
     }
 }

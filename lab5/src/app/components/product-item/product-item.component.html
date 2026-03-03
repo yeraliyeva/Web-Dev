@@ -61,9 +61,11 @@
                 }
             </div>
 
+            @if (product().likes < 10) {
             <button class="btn btn-delete" (click)="remove()">
                 Delete
             </button>
+            }
         </div>
     </div>
 </div>
