@@ -17,6 +17,10 @@ export class Albums implements OnInit {
   constructor(private albumService: AlbumService, private cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
+    this.loadAlbums();
+  }
+
+  loadAlbums(): void {
     this.albumService.getAlbums().subscribe((data) => {
       this.albums = data;
       this.loading = false;
@@ -26,8 +30,7 @@ export class Albums implements OnInit {
 
   deleteAlbum(id: number): void {
     this.albumService.deleteAlbum(id).subscribe(() => {
-      this.albums = this.albums.filter((album) => album.id !== id);
-      this.cdr.detectChanges();
+      this.loadAlbums();
     });
   }
 }
