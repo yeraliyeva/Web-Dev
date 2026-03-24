@@ -66,7 +66,7 @@ class Parrot(Animal):
     def speak(self):
         # переопределение: поведение зависит от умения говорить
         if self.can_talk:
-            return f"{self.name} говорит: Попка дурак!"
+            return f"{self.name} говорит:АААААА!"
         return f"{self.name} громко кричит!"
 
     def mimic(self, phrase):

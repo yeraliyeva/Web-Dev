@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Back — API Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /*
+          Color palette:
+          --bg:      #0f1f0f   (deep forest)
+          --surface: #1a2e1a   (dark green card)
+          --primary: #2d5a2d   (main green)
+          --accent:  #4a8c4a   (bright accent)
+          --text:    #c8e6c8   (soft light green)
+        */
+        :root {
+            --bg: #0f1f0f;
+            --surface: #1a2e1a;
+            --primary: #2d5a2d;
+            --accent: #4a8c4a;
+            --text: #c8e6c8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+        header {
+            background: var(--primary);
+            padding: 24px 32px;
+            border-bottom: 3px solid var(--accent);
+        }
+
+        header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        header p {
+            margin-top: 6px;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 32px 24px;
+        }
+
+        .endpoints {
+            background: var(--surface);
+            border: 1px solid var(--primary);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 40px;
+        }
+
+        .endpoints h2 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--accent);
+        }
+
+        .endpoints ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .endpoints a {
+            display: inline-block;
+            padding: 8px 16px;
+            background: var(--primary);
+            color: var(--text);
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: background 0.2s, color 0.2s;
+            border: 1px solid transparent;
+        }
+
+        .endpoints a:hover {
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+        }
+
+        .category-section {
+            margin-bottom: 40px;
+        }
+
+        .category-section h2 {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--primary);
+            color: var(--accent);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .product-card {
+            background: var(--surface);
+            border: 1px solid var(--primary);
+            border-radius: 12px;
+            padding: 20px;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent);
+        }
+
+        .product-card h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .product-card .description {
+            font-size: 13px;
+            opacity: 0.7;
+            margin-bottom: 12px;
+            line-height: 1.5;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .product-card .meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .price {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .badge.active {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .badge.inactive {
+            background: #5a2d2d;
+            color: #e6c8c8;
+        }
+
+        .badge.count {
+            background: var(--primary);
+            color: var(--text);
+        }
+
+        footer {
+            text-align: center;
+            padding: 24px;
+            font-size: 13px;
+            opacity: 0.5;
+            border-top: 1px solid var(--primary);
+        }
+
+        @media (max-width: 600px) {
+            header { padding: 16px 20px; }
+            header h1 { font-size: 22px; }
+            .container { padding: 20px 16px; }
+            .products-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Shop Back</h1>
+        <p>Django REST API Dashboard — Lab 8</p>
+    </header>
+
+    <div class="container">
+        <div class="endpoints">
+            <h2>API Endpoints</h2>
+            <ul>
+                <li><a href="/api/products/">GET /api/products/</a></li>
+                <li><a href="/api/categories/">GET /api/categories/</a></li>
+                {% for item in data %}
+                <li><a href="/api/categories/{{ item.category.id }}/">GET /api/categories/{{ item.category.id }}/</a></li>
+                <li><a href="/api/categories/{{ item.category.id }}/products/">GET /api/categories/{{ item.category.id }}/products/</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        {% for item in data %}
+        <div class="category-section">
+            <h2>{{ item.category.name }}</h2>
+            <div class="products-grid">
+                {% for product in item.products %}
+                <div class="product-card">
+                    <h3>{{ product.name }}</h3>
+                    <p class="description">{{ product.description }}</p>
+                    <div class="meta">
+                        <span class="price">{{ product.price|floatformat:0 }} &#8376;</span>
+                        <span class="badge count">Stock: {{ product.count }}</span>
+                        {% if product.is_active %}
+                        <span class="badge active">Active</span>
+                        {% else %}
+                        <span class="badge inactive">Inactive</span>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <footer>
+        Shop Back API &mdash; Lab 8 &mdash; Django {{ django_version }}
+    </footer>
+</body>
+</html>
