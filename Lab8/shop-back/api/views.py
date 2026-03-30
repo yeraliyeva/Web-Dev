@@ -23,7 +23,7 @@ def category_to_dict(category):
 
 
 def product_list(request):
-    products = Product.objects.all()
+    products = Product.objects.all().order_by('-price')
     data = [product_to_dict(p) for p in products]
     return JsonResponse(data, safe=False)
 
@@ -46,7 +46,8 @@ def category_detail(request, id):
 
 def category_products(request, id):
     category = get_object_or_404(Category, id=id)
-    products = Product.objects.filter(category=category)
+    # ordering = request.GET.get('ordering', 'price')
+    products = Product.objects.filter(category=category).order_by('price')
     data = [product_to_dict(p) for p in products]
     return JsonResponse(data, safe=False)
 

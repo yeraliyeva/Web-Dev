@@ -1,0 +1,12 @@
+$kind: http-request
+url: http://localhost:8000/api/categories/1/
+method: PUT
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+        "name": "Smartphones & Accessories"
+    }
+order: 5000

@@ -1,0 +1,17 @@
+$kind: http-request
+url: http://localhost:8000/api/products/
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: >-
+    {
+        "name": "iPad Pro 12.9",
+        "price": 590000,
+        "description": "The most advanced iPad with M2 chip and Liquid Retina XDR display.",
+        "count": 10,
+        "is_active": true,
+        "category": 1
+    }
+order: 3000
